@@ -11,6 +11,7 @@ public class HashCodeAndEquals {
 
         User user1 = new User("user1", 100);
         User user2 = new User("user2", 100);
+        System.out.println(user1.hashCode());
 
         Set<User> set = new HashSet<>();
         set.add(user1);
@@ -23,6 +24,7 @@ public class HashCodeAndEquals {
         System.out.println(map.get(user2));
 
         user1.setId(200);
+        System.out.println(user1.hashCode());
         System.out.println(map.get(user2));
 
 
@@ -42,7 +44,7 @@ class User {
 
     @Override
     public int hashCode() {
-        return 31 * id >>> 25;
+        return 31 * id + (id ^ (id >>> 25));
     }
 
     @Override
