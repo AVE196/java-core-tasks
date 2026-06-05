@@ -44,7 +44,7 @@ class User {
 
     @Override
     public int hashCode() {
-        return 31 * id + (id ^ (id >>> 25));
+        return 31 * id + (id ^ (id >>> 1));
     }
 
     @Override
