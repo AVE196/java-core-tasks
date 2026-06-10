@@ -10,7 +10,7 @@ public class CompareStreamAndLoop {
 
     public static void main(String[] args) {
 
-        List<Integer> arr = new ArrayList<>(Arrays.asList(3,5,1,4,2));
+        List<Integer> arr = Arrays.asList(3,5,1,4,2);
 
         List<Integer> arrI = imperaticVariant(arr);
         System.out.println(arrI.toString());
