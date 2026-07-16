@@ -88,8 +88,20 @@ public class Main {
         // Задание 15
         // Получите Map<String, Product> → самый дорогой продукт по каждой категории.
 
+        Map<String, Product> res = customers.stream().flatMap(c -> c.getOrders().stream())
+                .flatMap(o -> o.getProducts().stream())
+                .distinct()
+                .collect(Collectors.groupingBy(Product::getCategory
+                        , Collectors.collectingAndThen(Collectors.maxBy(Comparator.comparing(Product::getPrice))
+                                , opt -> opt.orElse(null))));
 
 
+        // Задание 13
+        // Создайте Map<Order, Double> → key - заказ, value - общая сумма продуктов заказа
+
+        Map<Order, BigDecimal> sumByOrder = customers.stream().flatMap(c -> c.getOrders().stream())
+                .collect(Collectors.toMap(order -> order
+                        , order -> order.getProducts().stream().map(Product::getPrice).reduce(BigDecimal::add).orElse(BigDecimal.ZERO)));
 
 
 
